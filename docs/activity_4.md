@@ -1,4 +1,4 @@
-# Activity 5 - Avoid Prop Drilling with useContext
+# Activity 4 - Avoid Prop Drilling with useContext
 
 ## Prop drilling 👷🚧
 
@@ -86,7 +86,6 @@ interface CharacterContainerProps{
 	// removed characterFavourites
 	updateFavourites: (favourites: Array<number>) => void;
 }
-
 ```
 
 This will immediately break everything! We have to remove the prop we're passing to CharacterContainer, the prop we're passing to `Character`, make the same change to the interface in `Character`, and so on...
@@ -198,14 +197,12 @@ Time to put all this learning into practice!
 #### App.tsx
 
 ```JSX
-
 import './App.css';
 import React, { useState } from 'react';
 import Header from './components/header';
 import CharacterContainer from './components/character_container';
 import Navigation from './components/navigation';
 import { DisneyCharacter } from './disney_character';
-import axios from 'axios';
 import { useEffect } from 'react';
 
 export const FavouritesContext = React.createContext<number[]>([]);
@@ -244,7 +241,6 @@ const App : React.FC = () => {
 }
 
 export default App;
-
 ```
 
 #### CharacterContainer.js
@@ -321,6 +317,5 @@ const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) 
 
 
 export default Character;
-
 ```
 
