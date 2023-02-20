@@ -7,10 +7,10 @@ interface CharacterProps {
 const Character: React.FC<CharacterProps> = ({ character }) => {
   return (
     <article className="card">
-      
+
       <h2>{character.name}</h2>
 
-      <div className="card__actions">Add to favourites</div>
+      <button className="card__button ">Add to favourites</button>
 
       <img
         className="card__img"
