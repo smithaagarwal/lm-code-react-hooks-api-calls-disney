@@ -327,7 +327,7 @@ const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) 
 		}
 	  }
 
-    return(<article className="character-item">
+    return(<article className="card">
 
       <h2>{character.name}</h2>
 
@@ -335,7 +335,7 @@ const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) 
 	  	{!characterFavourites.includes(character._id) ? "Add to Favourites" : "Favourited"}
       </div>
 
-      <img className="character-item__img" src={character.imageUrl} alt={character.name} />
+      <img src={character.imageUrl} alt={character.name} />
 
     </article>);
 }

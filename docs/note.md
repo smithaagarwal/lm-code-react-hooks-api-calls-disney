@@ -61,7 +61,7 @@ const Character: React.FC<CharacterProps> = ({ character }) => {
   const toggleFavourites = useFavouritesUpdate()
 
   return (
-    <article className="character-item">
+    <article className="card">
       <h2>{character.name}</h2>
 
       <div className="character-item__actions" onClick={() => toggleFavourites(character._id)}>
@@ -69,7 +69,6 @@ const Character: React.FC<CharacterProps> = ({ character }) => {
         </div>
 
       <img
-        className="character-item__img"
         src={character.imageUrl}
         alt={character.name}
       />
@@ -133,7 +132,7 @@ export function FavCharacterProvider ({ children } : { children: React.ReactNode
 
 ## Accessing our Context 
 
-```TypeScript
+```JSX
 import { DisneyCharacter } from "../disney_character";
 import { useFavourites } from "../FavCharacterContext";
 
@@ -155,7 +154,6 @@ const Character: React.FC<CharacterProps> = ({ character }) => {
         </div>
 
       <img
-        className="character-item__img"
         src={character.imageUrl}
         alt={character.name}
       />
