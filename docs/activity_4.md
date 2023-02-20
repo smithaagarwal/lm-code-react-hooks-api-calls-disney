@@ -166,15 +166,28 @@ But wait....there's more! What about that **updateFavourites** method? We're sti
 
 👉 Try to take the approaches discussed in order to change how you utilise the context hook and implement the **updateFavourites** in a manner you can access via the context.
 
-👉 If you get this far make sure to git commit and push. 
+👉 If you get this far make sure to git commit and push!
+
+💡 For those wanting more and to see a slightly different approach to the one shown in the video, see the [note](./note.md)!!
 
 ## Congratulations for making it this far! 🙌 🔥
 
-You can put your feet up and relax, you deserve it! However, the learning never stops 😅
+🧢 Re-cap: 
 
-If you feel like another challenge... an extension activity can be found here: [Extension](./activity_6.md). You can do it! 🙌 💪 🧠
+- You have successfully hooked up your application to a real API call using fetch and the
+useEffect hook
+- You are successfully toggling between favourite Disney characters and some other less favourite ones
+- You have created some shared state using the useContext hook
 
-💡 For those wanting more and to see a slightly different approach to the one shown in the video, see the [note](./note.md)!!
+Great job!
+
+You are now at the grand finale! 
+
+Time to put all this learning into practice!
+
+[Finale](./activity_5.md). You can do it! 🙌 💪 🧠
+
+
 
 
 ## Sample code files - for if you get stuck!

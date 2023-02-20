@@ -1,4 +1,4 @@
-# Activity 6 - Extension exercise
+# Activity 5
 
 ## Showing the favourites
 
@@ -19,8 +19,17 @@ As a user I want to be able to toggle between seeing my favourite Disney charact
 
 ## Hints and tips
 
-💡 It might be worth attempting in a TDD manner with React Testing Library
+💡 It might be worth attempting this in a TDD manner with React Testing Library ✅
 
-💡 Currently when you add a favourite it only includes the character ID. Maybe you'll need to change that approach.
+💡 Currently when you add a favourite it only includes the character ID. Maybe you'll need to change that approach. 🤔
 
 💡 You might need to change the remove from favourites function if you do change the way the favourites are tracked in state.
+
+💡 If you get stuck, take a break and come back to this later. ☕️ If you get really stuck, reach out to one of your fellow cohort members and see if they can give you a nudge in the right direction. Your coaches are on hand to support you too. 😊
+
+
+## The End.
+
+Phew! That was tough!
+
+If you made it this far, take a very well deserved rest. It's safe to say you have now mastered the concepts of React 🔥
