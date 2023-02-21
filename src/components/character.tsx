@@ -1,21 +1,25 @@
-import { DisneyCharacter } from "../disney_character"
+import { DisneyCharacter } from "../disney_character";
 
-// for our props we can reuse the DisneyCharacter interface
-// - defining an anonymous type that just has one property - a DisneyCharacter
-const Character : React.FC<{ character: DisneyCharacter}> = ( { character }) => 
-  
-    <article className="character-item">
+interface CharacterProps {
+  character: DisneyCharacter;
+}
+
+const Character: React.FC<CharacterProps> = ({ character }) => {
+  return (
+    <article className="card">
 
       <h2>{character.name}</h2>
 
-      <div className="character-item__actions">
-        Add to Favourites
-      </div>
+      <button className="card__button ">Add to favourites</button>
 
-      <img className="character-item__img" src={character.imageUrl} alt={character.name} />
+      <img
+        className="card__img"
+        src={character.imageUrl}
+        alt={character.name}
+      />
 
     </article>
-  
+  );
+};
 
-
-export default Character
+export default Character;

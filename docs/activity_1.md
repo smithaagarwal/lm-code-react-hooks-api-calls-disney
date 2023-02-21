@@ -172,9 +172,9 @@ Notice how this method is marked **async** meaning we can utilise the **await** 
 
 With Fetch all HTTP requests will return **response**. Here we assign that **response** to the variable called **apiResponse**.
 
-The **response** has a number of properties one of which is the json method, which also returns a promise. 
+The **response** has a number of properties one of which is the json method, which also returns a promise.
 
-If you go back to check the Disney API, notice that the response of the API call is a JSON object that has a property called **data**. That is why we annotate the json response `as { data: DisneyCharacter[] };`. This is to match the shape of the json that is returned from this specific API. 
+If you go back to check the Disney API, notice that the response of the API call is a JSON object that has a property called **data**. That is why we annotate the json response `as { data: DisneyCharacter[] };`. This is to match the shape of the json that is returned from this specific API.
 
 👉 Finally let's call that **getCharacters** function from within your **useEffect** hook. Update the **useEffect** method to look like the following
 
@@ -186,9 +186,7 @@ useEffect(() => {
 
 👉 Stop and start you application (you probably actually don't need to stop and start but it might be worth it just in case there are any errors). You should see a lovely list of Disney characters...
 
-❓ Are the images failing to appear?? If so, don't worry, we'll figure that out in the next activity!
-
-🎉 Either way, bask in the glory of introducing your first API call.
+🎉 Bask in the glory of introducing your first API call.
 
 👉 Before moving on to activity 2 make sure to compile your own notes around what you have covered and by all means ask us any questions.
 
@@ -196,7 +194,7 @@ Moving on to [activity 2](./activity_2.md).
 
 🙋🏻 At this point your `App.tsx` should look similar to this:
 
-```TypeScript
+```JSX
 
 import './App.css';
 import React, { useState } from 'react';
