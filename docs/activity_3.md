@@ -26,7 +26,7 @@ We should specify the **_type_** of our array as the generic parameter to `useSt
 
 In order to add the character to the list of favourites or know whether the character is already favourited we'll need both the **characterFavourites** array and the **setCharacterFavourites** function. These are defined in **App.tsx** so we need to pass them down as **props**, firstly through to the [CharacterContainer](../src/components/character_container.tsx) and then on to the [Character](../src/components/character.tsx) component.
 
-👉 Update the JSX where the **CharacterContainer** is utilised in **App.tsx** to pass in the props.
+👉 Update the JSX where the **CharacterContainer** is utilised in **App.tsx** to pass in **characterFavourites** and **setCharacterFavourites** as props.
 
 ```JSX
 // character_container.tsx
@@ -35,32 +35,34 @@ In order to add the character to the list of favourites or know whether the char
                     updateFavourites={setCharacterFavourites}  />
 ```
 
-TypeScript will correctly complain that it doesn't know what these props are, so we'd better pop over to **_character_container.tsx_** and update it.
+TypeScript will correctly complain that it doesn't know what these new props are, so we'd better pop over to **_character_container.tsx_** and update it.
 
-👉 Look at the props of `<CharacterContainer>`. Right now we're defining an anonymous type, which we could easily extend by adding the two new properties... but it's starting to feel like things might be cleaner if we add an `interface` instead:
+👉 Update the props interface for `<CharacterContainer>`. 
 
 ```TypeScript
 // character_container.tsx
 interface CharacterContainerProps{
 	characters: Array<DisneyCharacter>;
-	characterFavourites: Array<number>;
-	updateFavourites: (favourites: Array<number>) => void;
+	characterFavourites: any;
+	updateFavourites: (favourites: any) => void;
 }
 
-// notice we're updating the props destructuring to access the two new props too:
+// ❗ Don't forget to update the props destructuring to access the two new props too:
 const CharacterContainer : React.FC<CharacterContainerProps> = ( { characters, characterFavourites, updateFavourites }) => {
 	// rest of file here...
 ```
 
-See how those `any`s are starting to multiply..? Because we never defined the type before we're having to put `any` twice here too! This is why we ought to be suspicious whenever we add a single `any` - before you know it it'll spread across your codebase and you'll have turned off all the useful features of TypeScript.
+See how those `any`s are starting to multiply..? Because we never defined the type initially we're having to put `any` twice here too! This is why we ought to be suspicious whenever we add a single `any` - before you know it it'll spread across your codebase and you'll have turned off all the useful features of TypeScript.
 
 Let's fix that now!
 
-🤔 Thinking about it, we can simply use the character `id` as a signifier that it has been favourited, so we don't need a complex type - a list of ids will do the job. In other words, those three references we just added to `Array<any>` should be `Array<number>`.
+🤔 Thinking about it, we can simply use the character `id` as a signifier that it has been favourited, so we don't need a complex type - a list of ids that have been favourited will do the job. In other words, those three references we just added to `any` should be `Array<number>`.
 
-👉 In `App.tsx` change `Array<any>` to `Array<number>` for the `useState` call of our favourites array.
+❗ This is a simple approach, but it has pitfalls. We could alternatively add a `boolean` `isFavourited` property to the character data, which would have the benefit of keeping all data together in a single array. For now we'll go with the separate list of ids, but always consider the pros and cons of different methods of storing state. "Simplest is best"... but what is simplest often changes as the app does!
 
-👉 In `character_container.tsx` change `Array<any>` to `Array<number>` in the props interface for our two new props.
+👉 In `App.tsx` change `any` to `Array<number>` for the `useState` call of our favourites array.
+
+👉 In `character_container.tsx` change `any` to `Array<number>` in the props interface for our two new props.
 
 So you've defined two props called **characterFavourites** and **updateFavourites**. They provide the current state of character favourites along with a function to update the favourites.
 
