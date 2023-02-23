@@ -39,11 +39,11 @@ TypeScript will correctly complain that it doesn't know what these props are, so
 
 👉 Look at the props of `<CharacterContainer>`. Right now we're defining an anonymous type, which we could easily extend by adding the two new properties... but it's starting to feel like things might be cleaner if we add an `interface` instead:
 
-```TypeScript
+```JSX
 // character_container.tsx
 interface CharacterContainerProps{
 	characters: Array<DisneyCharacter>;
-	characterFavourites: Array<number>;
+	characterFavourites: Array<any>;
 	updateFavourites: (favourites: Array<number>) => void;
 }
 
