@@ -39,7 +39,7 @@ TypeScript will correctly complain that it doesn't know what these new props are
 
 👉 Update the props interface for `<CharacterContainer>`. 
 
-```TypeScript
+```JSX
 // character_container.tsx
 interface CharacterContainerProps{
 	characters: Array<DisneyCharacter>;
