@@ -176,13 +176,20 @@ The **response** has a number of properties one of which is the json method, whi
 
 If you go back to check the Disney API, notice that the response of the API call is a JSON object that has a property called **data**. That is why we annotate the json response `as { data: DisneyCharacter[] };`. This is to match the shape of the json that is returned from this specific API.
 
-👉 Finally let's call that **getCharacters** function from within your **useEffect** hook. Update the **useEffect** method to look like the following
+👉 Finally, let's move and then call the **getCharacters** function inside our **useEffect** hook. Update the **useEffect** method to look like the following
 
 ```JSX
 useEffect(() => {
+  const getCharacters = async (pageNumber : number) => {
+  const apiResponse = await fetch(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
+  const json = await apiResponse.json() as { data: DisneyCharacter[] };
+		setCharacters(json.data);
+};
   getCharacters(1);
 }, []);
 ```
+
+This ensures our **getCharacters** function only runs when our `useEffect` does. Our `useEffect` dependency array is currently empty, meaning our `useEffect` will only run when our component first renders. Great!
 
 👉 Stop and start you application (you probably actually don't need to stop and start but it might be worth it just in case there are any errors). You should see a lovely list of Disney characters...
 
@@ -213,14 +220,15 @@ const App : React.FC = () => {
   ]);
 
   useEffect(() => {
-	getCharacters(1);
-  }, []);
-
-const getCharacters = async (pageNumber: number) => {
+    const getCharacters = async (pageNumber: number) => {
 		const apiResponse = await fetch(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
 		const json = await apiResponse.json() as { data: DisneyCharacter[] };
 		setCharacters(json.data);
 	};
+	getCharacters(1);
+  }, []);
+
+
 
   return (
     <div className="page">

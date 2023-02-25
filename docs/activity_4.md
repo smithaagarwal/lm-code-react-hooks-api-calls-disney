@@ -126,7 +126,7 @@ interface CharacterProps{
 	updateFavourites: (favourites: Array<number>) => void;
 }
 
-const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) => {
+const Character : React.FC<CharacterProps> = ({ character, updateFavourites }) => {
 	// rest of file...
 ```
 
@@ -216,17 +216,15 @@ const App : React.FC = () => {
   ]);
 
   useEffect(() => {
-	getCharacters(currentPage);
-  }, [currentPage]);
-
- const getCharacters = async (pageNumber: number) => {
+    const getCharacters = async (pageNumber: number) => {
     const apiResponse = await fetch(
       `http://api.disneyapi.dev/characters?page=${pageNumber}`
     );
     const json = (await apiResponse.json()) as { data: DisneyCharacter[] };
     setCharacters(json.data);
   };
-
+	getCharacters(currentPage);
+  }, [currentPage]);
 
 	return (
 		<FavouritesContext.Provider value={characterFavourites}>
@@ -311,7 +309,6 @@ const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) 
       </div>
 
       <img className="card__img" src={character.imageUrl} alt={character.name} />
-
     </article>);
 }
 
