@@ -44,6 +44,11 @@ The useEffect hook
 
 ```JSX
 useEffect(() => {
+  const getCharacters = async (pageNumber: number) => {
+		const apiResponse = await fetch(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
+		const json = await apiResponse.json() as { data: DisneyCharacter[] };
+		setCharacters(json.data);
+	};
   getCharacters(currentPage);
 }, [currentPage]);
 ```
