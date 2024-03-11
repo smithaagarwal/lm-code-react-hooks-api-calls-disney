@@ -15,10 +15,10 @@ const Character: React.FC<CharacterProps> = ({ character }) => {
       <button
         className="card__button "
         onClick={() => {
-          toggleFavourites(character._id);
+          toggleFavourites(character);
         }}
       >
-        {!favourites.includes(character._id)
+        {!favourites.some((favchar) => favchar._id === character._id)
           ? "Add to favourites"
           : "Favourited"}
       </button>

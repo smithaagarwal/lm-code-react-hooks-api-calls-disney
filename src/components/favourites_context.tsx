@@ -1,9 +1,17 @@
 import React from "react";
+import { DisneyCharacter } from "../disney_character";
 import { useState, useContext } from "react";
 const FavouritesContext = React.createContext<{
-  favourites: number[];
-  toggleFavourites: (id: number) => void;
-}>({ favourites: [], toggleFavourites: () => null });
+  favourites: DisneyCharacter[];
+  toggleFavourites: (character: DisneyCharacter) => void;
+  showFav: boolean;
+  toggleShowFav: () => void;
+}>({
+  favourites: [],
+  toggleFavourites: () => null,
+  showFav: false,
+  toggleShowFav: () => null,
+});
 
 export const useFavourites = () => {
   return useContext(FavouritesContext);
@@ -14,24 +22,33 @@ export const FavouritesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [characterFavourites, setCharacterFavourites] = useState<Array<number>>(
-    []
-  );
-  const toggleFavouriteForCharacter = (characterid: number) => {
-    if (!characterFavourites.includes(characterid)) {
-      setCharacterFavourites([...characterFavourites, characterid]);
+  const [characterFavourites, setCharacterFavourites] = useState<
+    Array<DisneyCharacter>
+  >([]);
+  const [showFavourites, setShowFavourites] = useState<boolean>(false);
+
+  const toggleShowFav = () => {
+    setShowFavourites(!showFavourites);
+  };
+
+  const toggleFavouriteForCharacter = (character: DisneyCharacter) => {
+    if (!characterFavourites.some((favchar) => favchar._id === character._id)) {
+      setCharacterFavourites([...characterFavourites, character]);
     } else {
       const updatedFavourites = characterFavourites.filter(
-        (id) => id !== characterid
+        (favchar) => favchar._id !== character._id
       );
       setCharacterFavourites(updatedFavourites);
     }
+    console.log(characterFavourites);
   };
   return (
     <FavouritesContext.Provider
       value={{
         favourites: characterFavourites,
         toggleFavourites: toggleFavouriteForCharacter,
+        showFav: showFavourites,
+        toggleShowFav: toggleShowFav,
       }}
     >
       {children}
