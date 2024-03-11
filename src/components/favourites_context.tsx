@@ -1,16 +1,12 @@
 import React from "react";
 import { useState, useContext } from "react";
-const FavouritesContext = React.createContext<number[]>([]);
-const UpdateFavouritesContext = React.createContext<(id: number) => void>(
-  () => null
-);
+const FavouritesContext = React.createContext<{
+  favourites: number[];
+  toggleFavourites: (id: number) => void;
+}>({ favourites: [], toggleFavourites: () => null });
 
 export const useFavourites = () => {
   return useContext(FavouritesContext);
-};
-
-export const useUpdateFavourites = () => {
-  return useContext(UpdateFavouritesContext);
 };
 
 export const FavouritesProvider = ({
@@ -32,10 +28,13 @@ export const FavouritesProvider = ({
     }
   };
   return (
-    <FavouritesContext.Provider value={characterFavourites}>
-      <UpdateFavouritesContext.Provider value={toggleFavouriteForCharacter}>
-        {children}
-      </UpdateFavouritesContext.Provider>
+    <FavouritesContext.Provider
+      value={{
+        favourites: characterFavourites,
+        toggleFavourites: toggleFavouriteForCharacter,
+      }}
+    >
+      {children}
     </FavouritesContext.Provider>
   );
 };

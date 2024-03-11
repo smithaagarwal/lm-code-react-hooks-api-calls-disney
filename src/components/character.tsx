@@ -1,13 +1,12 @@
 import { DisneyCharacter } from "../disney_character";
-import { useFavourites, useUpdateFavourites } from "./favourites_context";
+import { useFavourites } from "./favourites_context";
 
 interface CharacterProps {
   character: DisneyCharacter;
 }
 
 const Character: React.FC<CharacterProps> = ({ character }) => {
-  const characterFavourites = useFavourites();
-  const toggleFavouriteForCharacter = useUpdateFavourites();
+  const { favourites, toggleFavourites } = useFavourites();
 
   return (
     <article className="card">
@@ -16,10 +15,10 @@ const Character: React.FC<CharacterProps> = ({ character }) => {
       <button
         className="card__button "
         onClick={() => {
-          toggleFavouriteForCharacter(character._id);
+          toggleFavourites(character._id);
         }}
       >
-        {!characterFavourites.includes(character._id)
+        {!favourites.includes(character._id)
           ? "Add to favourites"
           : "Favourited"}
       </button>
